@@ -73,7 +73,7 @@ public class DemoApplicationTests {
     }
     @Test
     public void canGetAllCustomersForCertainAgeSpecifcTownAndGivenCourse (){
-        assertEquals(1,customerRepository.getByAgeGreaterThanAndTownAndBookingsCoursesName(41,"Edinburgh","Python").size());
+        assertEquals(1,customerRepository.getByAgeGreaterThanAndTownAndBookingsCoursesName(38,"Edinburgh","Python").size());
 
 
     }
