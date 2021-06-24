@@ -1,9 +1,12 @@
 package com.CourseBookingSystem.demo.models;
 
 
+import com.CourseBookingSystem.demo.repositories.CourseRepository;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,18 +23,20 @@ public class Booking {
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(name = "courses_and_bookings",
-            joinColumns = {@JoinColumn(name = "bookings_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "booking_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "course_id", nullable = false, updatable = false)})
     private List<Course> courses;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customers_id", nullable = false)
     private Customer customer;
 
 
-    public Booking(String date) {
+    public Booking(String date, Customer customer) {
         this.date = date;
+        this.courses = new ArrayList<>();
+        this.customer = customer;
     }
 
     public Booking() {
@@ -46,4 +51,21 @@ public class Booking {
     }
 
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void addCourse(Course course) {
+        this.courses.add(course);
+    }
 }

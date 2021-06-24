@@ -5,12 +5,16 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "courses")
-
 public class Course {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "name")
     private String name;
     private String town;
@@ -29,6 +33,7 @@ public class Course {
         this.name = name;
         this.town = town;
         this.starRating = starRating;
+        this.bookings = new ArrayList<>();
     }
 
     public Course() {
@@ -56,5 +61,13 @@ public class Course {
 
     public void setStarRating(int starRating) {
         this.starRating = starRating;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Booking bookings) {
+        this.bookings.add(bookings);
     }
 }

@@ -1,7 +1,10 @@
 package com.CourseBookingSystem.demo.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +22,8 @@ public class Customer {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "customers", fetch = FetchType.LAZY)
+    @JsonBackReference
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
 
@@ -27,9 +31,18 @@ public class Customer {
         this.name = name;
         this.town = town;
         this.age = age;
+        this.bookings = new ArrayList<>();
     }
 
     public Customer() {
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Booking bookings) {
+        this.bookings.add(bookings);
     }
 
     public String getName() {
