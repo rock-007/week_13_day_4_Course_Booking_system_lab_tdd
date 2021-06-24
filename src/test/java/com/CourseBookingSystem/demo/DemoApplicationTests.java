@@ -60,8 +60,20 @@ public class DemoApplicationTests {
     }
     @Test
     public void canGetAllBookingsForGivenDate (){
-        Course python = new Course("Python", "Edinburgh", 5);
-        assertEquals(1,bookingRepository.findByDate("05/07/09").size());
+         assertEquals(1,bookingRepository.findByDate("05/07/09").size());
+
+
+    }
+
+    @Test
+    public void canGetAllCustomersForGivenTownAndCourse (){
+         assertEquals(1,customerRepository.getByTownAndBookingsCoursesName("Edinburgh","Python").size());
+
+
+    }
+    @Test
+    public void canGetAllCustomersForCertainAgeSpecifcTownAndGivenCourse (){
+        assertEquals(1,customerRepository.getByAgeGreaterThanAndTownAndBookingsCoursesName(41,"Edinburgh","Python").size());
 
 
     }
