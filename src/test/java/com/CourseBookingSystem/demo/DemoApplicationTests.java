@@ -47,11 +47,23 @@ public class DemoApplicationTests {
     }
     @Test
     public void canGetAllCustomersForGivenCourse (){
-        Course python = new Course("Python", "Edinburgh", 5);
+
        assertEquals("Gordon",customerRepository.findByBookingsCoursesName("Python").get(0).getName());
 
 
     }
+    @Test
+    public void canGetAllCoursesForGivenCustomer (){
+         assertEquals("Python",courseRepository.findByBookingsCustomerName("Gordon").get(0).getName());
 
+
+    }
+    @Test
+    public void canGetAllBookingsForGivenDate (){
+        Course python = new Course("Python", "Edinburgh", 5);
+        assertEquals(1,bookingRepository.findByDate("05/07/09").size());
+
+
+    }
 
 }
