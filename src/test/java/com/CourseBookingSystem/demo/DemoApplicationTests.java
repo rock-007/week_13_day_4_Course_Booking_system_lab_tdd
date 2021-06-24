@@ -1,5 +1,6 @@
 package com.CourseBookingSystem.demo;
 
+import com.CourseBookingSystem.demo.models.Course;
 import com.CourseBookingSystem.demo.models.Customer;
 import com.CourseBookingSystem.demo.repositories.BookingRepository;
 import com.CourseBookingSystem.demo.repositories.CourseRepository;
@@ -43,6 +44,13 @@ public class DemoApplicationTests {
     @Test
     public void canGetAllCoursesWithGivenRating() {
        assertEquals("Python",courseRepository.findByStarRating(5).get(0).getName());
+    }
+    @Test
+    public void canGetAllCustomersForGivenCourse (){
+        Course python = new Course("Python", "Edinburgh", 5);
+       assertEquals("Gordon",customerRepository.findByBookingsCoursesName("Python").get(0).getName());
+
+
     }
 
 
