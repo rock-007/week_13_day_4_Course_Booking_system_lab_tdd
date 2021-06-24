@@ -1,6 +1,8 @@
 package com.CourseBookingSystem.demo;
 
 import com.CourseBookingSystem.demo.models.Customer;
+import com.CourseBookingSystem.demo.repositories.BookingRepository;
+import com.CourseBookingSystem.demo.repositories.CourseRepository;
 import com.CourseBookingSystem.demo.repositories.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,10 @@ public class DemoApplicationTests {
 
     @Autowired
     CustomerRepository customerRepository;
+    @Autowired
+    CourseRepository courseRepository;
+    @Autowired
+    BookingRepository bookingRepository;
 
     @Test
     public void contextLoads() {
@@ -33,5 +39,11 @@ public class DemoApplicationTests {
         assertEquals("Gordon", customerRepository.findByName("Gordon").get(0).getName());
 
     }
+
+    @Test
+    public void canGetAllCoursesWithGivenRating() {
+       assertEquals("Python",courseRepository.findByStarRating(5).get(0).getName());
+    }
+
 
 }
