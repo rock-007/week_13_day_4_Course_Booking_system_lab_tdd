@@ -2,22 +2,25 @@ package com.CourseBookingSystem.demo.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name ="customers")
+@Table(name = "customers")
 public class Customer {
-
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column( name = "name")
+    @Column(name = "name")
     private String name;
-    @Column (name = "town")
+    @Column(name = "town")
     private String town;
-    @Column (name ="age")
+    @Column(name = "age")
     private int age;
+
+    @OneToMany(mappedBy = "customers", fetch = FetchType.LAZY)
+    private List<Booking> bookings;
 
 
     public Customer(String name, String town, int age) {

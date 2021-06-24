@@ -27,10 +27,9 @@ public class DemoApplicationTests {
     @Test
     public void addCustomer() {
         Customer customer1 = new Customer("Gordon", "Edinburgh", 40);
-        Customer customer2 = new Customer("Umair", "Edinburgh", 37);
-
         customerRepository.save(customer1);
-
+        Customer customer2 = new Customer("Umair", "Edinburgh", 37);
+        customerRepository.save(customer2);
         assertEquals("Gordon", customerRepository.findByName("Gordon").get(0).getName());
 
     }

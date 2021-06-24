@@ -20,7 +20,10 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) throws Exception {
         Customer customer1 = new Customer("Gordon", "Edinburgh", 40);
+        customerRepository.save(customer1);
         Customer customer2 = new Customer("Umair", "Edinburgh", 37);
+        customerRepository.save(customer2);
+
     }
 }
 
